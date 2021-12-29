@@ -98,18 +98,13 @@ async function extractJiraKeysFromCommit() {
             const owner = payload.repository.owner.login;
             const repo = payload.repository.name;
             
-            console.log(owner, repo)
+            const { data } = await octokit.repos.getReleaseByTag({
+                owner,
+                repo,
+                tag
+            });
 
-            const a = octokit.repos.getReleaseByTag({ owner, repo, tag })
-            console.log(a)
-
-            // const { data } = await octokit.repos.getReleaseByTag({
-            //     owner,
-            //     repo,
-            //     tag
-            // });
-
-            // console.log(data)
+            console.log(data)
             return
         }
 
