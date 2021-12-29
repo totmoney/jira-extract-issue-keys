@@ -97,7 +97,9 @@ async function extractJiraKeysFromCommit() {
                 repo,
                 tag
             });
-            console.log(data);
+            const matches = matchAll(data.body, regex).toArray();
+            const result = matches.join(',');
+            core.setOutput("jira-keys", result);
             return;
         }
         // console.log("parse-all-commits input val is false");
