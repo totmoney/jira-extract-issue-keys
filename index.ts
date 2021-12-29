@@ -18,6 +18,9 @@ async function extractJiraKeysFromCommit() {
 
         
         const token = process.env['GITHUB_TOKEN'];
+
+        console.log({token})
+        
         const octokit = new Octokit({
             auth: token,
         });
