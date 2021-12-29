@@ -99,7 +99,9 @@ async function extractJiraKeysFromCommit() {
             
             console.log(owner, repo)
 
-            const gittolo = new github.GitHub(process.env['GITHUB_TOKEN'] as string)
+            const gittolo = new github.GitHub({
+                auth: token,
+            })
             const a = gittolo.repos.getReleaseByTag({ owner, repo, tag })
             console.log(a)
 
