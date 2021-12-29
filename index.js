@@ -14,7 +14,7 @@ const matchAll = require("match-all");
 async function extractJiraKeysFromCommit() {
     try {
         const regex = /((([A-Z]+)|([0-9]+))+-\d+)/g;
-        const tag = core.getInput('tag');
+        const tag = core.getInput('release-tag');
         const isPullRequest = core.getInput('is-pull-request') == 'true';
         // console.log("isPullRequest: " + isPullRequest);
         const commitMessage = core.getInput('commit-message');
