@@ -27,7 +27,6 @@ async function extractJiraKeysFromCommit() {
         const octokit = new Octokit({
             auth: token,
         });
-        console.log({ tag });
         if (isPullRequest) {
             let resultArr = [];
             // console.log("is pull request...");
@@ -87,6 +86,19 @@ async function extractJiraKeysFromCommit() {
             return;
         }
         if (tag) {
+            if (!payload.repository) {
+                console.warn('Failed to get repository');
+                return;
+            }
+            const owner = payload.repository.owner.login;
+            const repo = payload.repository.name;
+            const { data } = await octokit.repos.getReleaseByTag({
+                owner: owner,
+                repo: repo,
+                tag
+            });
+            console.log(data);
+            return;
         }
         // console.log("parse-all-commits input val is false");
         // console.log("head_commit: ", payload.head_commit);

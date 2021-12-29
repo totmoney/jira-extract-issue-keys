@@ -22,8 +22,6 @@ async function extractJiraKeysFromCommit() {
             auth: token,
         });
 
-        console.log({tag})
-
         if (isPullRequest) {
             let resultArr: any = [];
 
@@ -92,7 +90,21 @@ async function extractJiraKeysFromCommit() {
         }
 
         if (tag) {
+            if (!payload.repository) {
+                console.warn('Failed to get repository')
+                return
+            }
+            const owner = payload.repository.owner.login;
+            const repo = payload.repository.name;
 
+            const { data } = await octokit.repos.getReleaseByTag({
+                owner: owner,
+                repo: repo,
+                tag
+            });
+
+            console.log(data)
+            return
         }
 
         // console.log("parse-all-commits input val is false");
