@@ -22,7 +22,7 @@ async function extractJiraKeysFromCommit() {
             auth: token,
         });
 
-        console.log(tag)
+        console.log({tag})
 
         if (isPullRequest) {
             let resultArr: any = [];

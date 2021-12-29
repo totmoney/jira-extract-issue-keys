@@ -27,7 +27,7 @@ async function extractJiraKeysFromCommit() {
         const octokit = new Octokit({
             auth: token,
         });
-        console.log(tag);
+        console.log({ tag });
         if (isPullRequest) {
             let resultArr = [];
             // console.log("is pull request...");
