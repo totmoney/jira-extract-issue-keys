@@ -27,6 +27,9 @@ async function extractJiraKeysFromCommit() {
         const octokit = new Octokit({
             auth: token,
         });
+        const gittolo = new github.GitHub({
+            auth: token,
+        });
         if (isPullRequest) {
             let resultArr = [];
             // console.log("is pull request...");
@@ -93,7 +96,6 @@ async function extractJiraKeysFromCommit() {
             const owner = payload.repository.owner.login;
             const repo = payload.repository.name;
             console.log(owner, repo);
-            const gittolo = new github.GitHub(process.env['GITHUB_TOKEN']);
             const a = gittolo.repos.getReleaseByTag({ owner, repo, tag });
             console.log(a);
             // const { data } = await octokit.repos.getReleaseByTag({
