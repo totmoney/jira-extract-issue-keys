@@ -22,6 +22,10 @@ async function extractJiraKeysFromCommit() {
             auth: token,
         });
 
+        const gittolo = new github.GitHub({
+            auth: token,
+        })
+
         if (isPullRequest) {
             let resultArr: any = [];
 
@@ -99,9 +103,6 @@ async function extractJiraKeysFromCommit() {
             
             console.log(owner, repo)
 
-            const gittolo = new github.GitHub({
-                auth: token,
-            })
             const a = gittolo.repos.getReleaseByTag({ owner, repo, tag })
             console.log(a)
 
