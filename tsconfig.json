@@ -15,3 +15,4 @@
     "include": ["action.yml", "index.ts", "__tests__"],
     "exclude": ["node_modules"]
   }
+  
