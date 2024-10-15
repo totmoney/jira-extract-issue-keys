@@ -1,6 +1,8 @@
-name: My Test Single Project
+name: Build
 on:
   pull_request:
+    branches:
+      - main
 
 jobs:
   sonarcloud:
